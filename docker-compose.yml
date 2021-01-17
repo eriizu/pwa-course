@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    # ports:
+    #   - 80:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pwa.rule=Host(`pwa.eriizu.fr`)"
+      - "traefik.http.routers.pwa.entrypoints=websecure"
+      - "traefik.http.routers.pwa.tls.certresolver=le"
