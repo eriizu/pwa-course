@@ -68,6 +68,14 @@ function registerValidSW(swUrl: string, config?: Config) {
         if (installingWorker == null) {
           return;
         }
+
+        registration.pushManager
+          .subscribe()
+          .then((pushsubscription) => {
+            console.log(pushsubscription.endpoint);
+          })
+          .catch(console.error);
+
         installingWorker.onstatechange = () => {
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
