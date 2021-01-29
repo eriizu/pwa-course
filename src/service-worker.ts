@@ -81,11 +81,20 @@ self.addEventListener("message", (event) => {
 // Any other custom service worker logic can go here.
 self.addEventListener("push", (event) => {
   if (event.data) {
+    // event.no
     const data = event.data.json();
     console.log("New notification", data);
     const options: NotificationOptions = data.notification;
     event.waitUntil(
-      self.registration.showNotification(data.notification.title, options)
+      self.registration.showNotification(data.notification.data.url, options)
     );
   }
+});
+
+self.addEventListener("notificationclick", async (e) => {
+  console.log(e);
+  e.notification.close();
+  console.log(self.clients);
+  let windowClient = await self.clients.openWindow(e.notification.data.url);
+  if (windowClient) await windowClient.focus();
 });

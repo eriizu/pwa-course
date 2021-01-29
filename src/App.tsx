@@ -23,6 +23,7 @@ async function registerPush() {
         applicationServerKey: urlBase64ToUint8Array(
           "BPdTu_dImk8UZqr1-paVPIUjGjaWbLRRRlXTt4D7FqzxtVAvvzdyQd7eeIboxZdX2Jx_-oVKXSOhTQG-XXOuRwo"
         ),
+        userVisibleOnly: true,
       });
       console.log(pushsubscription);
     } catch (err) {
