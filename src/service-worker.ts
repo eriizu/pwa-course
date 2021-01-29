@@ -83,9 +83,9 @@ self.addEventListener("push", (event) => {
   if (event.data) {
     const data = event.data.json();
     console.log("New notification", data);
-    const options: NotificationOptions = {
-      body: data.body,
-    };
-    event.waitUntil(self.registration.showNotification(data.title, options));
+    const options: NotificationOptions = data.notification;
+    event.waitUntil(
+      self.registration.showNotification(data.notification.title, options)
+    );
   }
 });
